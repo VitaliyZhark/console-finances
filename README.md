@@ -1,5 +1,4 @@
-# console-finances
-<hr>
+# <a href="https://vitaliyzhark.github.io/console-finances/" console-finances </a>
 
 <h1>Description</h1>
 <p>This exercise presents a real-life situation where my new JavaScript skills will come in handy. I was assigned to create code to analyze the company's financial statements.<p>
