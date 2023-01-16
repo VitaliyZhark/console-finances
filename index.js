@@ -1,4 +1,9 @@
-var finances = [
+// Let's start with the title.
+console.log("Financial Analysis");
+console.log("--------------------------------------------------");
+
+// Dataset composed of arrays with two fields: Date and Profit/Losses.
+const finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
 ['Mar-2010', 322013],
@@ -86,3 +91,48 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+// Let's calculate the total number of months in the dataset
+let totalMonths = finances.length;
+console.log("Total months: " + totalMonths);
+
+// Calculate total Profit/Losses
+let netTotalProfitLoss = 0;
+
+for (let i = 0; i < totalMonths; i++) {
+    netTotalProfitLoss += finances[i][1];
+}
+console.log("The Net Total Profit/Loss: " + netTotalProfitLoss);
+
+// Total average of the Profit/Loss changes over the entire period
+let dateReversed = [];
+let amountReversed = [];
+
+for (let i = totalMonths - 1; i >= 0; i--) {
+    const[date, amount] = finances[i];
+    dateReversed.push(date)
+    amountReversed.push(amount);
+}
+
+let avgChanges =[]
+let totalAvgChanges = 0
+
+for (let i = 0; i < totalMonths - 1; i++) {
+    avgChanges.push(amountReversed[i] - amountReversed[i+1]);
+    totalAvgChanges += avgChanges[i];
+}
+let totalAvgProfitLoss = totalAvgChanges / avgChanges.length;
+
+console.log("Average change: " + totalAvgProfitLoss.toFixed(2));
+
+// Greatest Increase in Profits:
+let greatestProfitAmount = Math.max(...avgChanges);
+let greatestProfitDate = dateReversed[60];
+
+console.log("Greatest increase in profits: " + greatestProfitDate + " ($"+ greatestProfitAmount + ")")
+
+// Greatest Decrease in Profits:
+let greatestLossAmount = Math.min(...avgChanges);
+greatestLossDate = dateReversed[41];
+
+console.log("Greatest Decrease Profits: " + greatestLossDate + " ($" + greatestLossAmount + ")")
